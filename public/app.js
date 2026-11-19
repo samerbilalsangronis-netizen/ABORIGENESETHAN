@@ -68,7 +68,7 @@ function gameCards() {
 
 function home() {
   return `<section class="hero">
-    <div class="hero-copy white-card"><p class="eyebrow">Venezuela · Primer grado</p>
+    <div class="hero-copy"><p class="eyebrow">Venezuela · Primer grado</p>
       <h1>Explora con <span>Ethan</span></h1>
       <p>Una aventura por los pueblos originarios de Venezuela.</p>
       <div class="actions">${link(`${emoji("🧭")} ¡Vamos a explorar!`, "#viaje/wayuu", "gold")}${link(`${emoji("🎲")} Jugar`, "#jugar", "")}</div>

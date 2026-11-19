@@ -222,3 +222,18 @@ main.wrap,.bottom.wrap{grid-column:2}
   .top .motion-toggle{font-size:.68rem}
   .hero,.scene-stage{padding-top:12px}
 }
+
+/* Storybook lettering painted over the landscape. */
+.scenery-ethan::after{background:linear-gradient(90deg,#13342bc9 0%,#16392d92 40%,transparent 68%),linear-gradient(0deg,#173d31aa,transparent 28%)}
+.hero-copy{padding:0;width:min(52%,590px)}
+.hero-copy .eyebrow,.hero-copy>p:not(.eyebrow){color:#fff9e4;text-shadow:0 2px 4px #132e24}
+.hero-copy h1{color:#fff7df;line-height:.98;font-size:clamp(3.25rem,6.6vw,6.75rem);text-shadow:0 .055em 0 #254337,0 .08em .14em #173728}
+.hero-copy h1 span{display:block;width:fit-content;color:#ffd166;font-size:1.22em;transform:rotate(-3deg)}
+.hero-copy>p:not(.eyebrow){font-weight:800;max-width:30ch}
+@media(max-width:740px){
+  .scenery-ethan::after{background:linear-gradient(0deg,#163a2e 20%,#163a2eaa 53%,transparent 72%)}
+  .hero-copy{width:100%;padding:1rem .3rem}
+  .hero-copy h1{font-size:clamp(2.65rem,9vw,4rem)}
+  .hero-copy h1 span{display:inline-block}
+  .hero .scene-caption{position:static;display:inline-block;margin:.3rem 0 .8rem;font-size:.8rem}
+}
