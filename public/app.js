@@ -69,11 +69,11 @@ function gameCards() {
 function home() {
   return `<section class="hero">
     <div class="hero-copy white-card"><p class="eyebrow">Venezuela · Primer grado</p>
-      <h1>Explora los <span>pueblos originarios</span></h1>
-      <p>Viaja por Venezuela, conoce a sus pueblos y juega con lo que descubras.</p>
+      <h1>Explora con <span>Ethan</span></h1>
+      <p>Una aventura por los pueblos originarios de Venezuela.</p>
       <div class="actions">${link(`${emoji("🧭")} ¡Vamos a explorar!`, "#viaje/wayuu", "gold")}${link(`${emoji("🎲")} Jugar`, "#jugar", "")}</div>
     </div>
-    <p class="scene-caption">${emoji("📍")} Delta del Orinoco</p>
+    <p class="scene-caption">${emoji("📍")} Gran Sabana</p>
   </section>
   <section class="section white-card gallery">${sectionHead("Elige tu primera aventura")}${lessonCards()}</section>
   <section class="section white-card gallery">${sectionHead("Vamos a jugar")}${gameCards()}</section>`;
@@ -324,7 +324,7 @@ const sceneLabels = {
 const alternateScenes = { cesta: "pemon", ropa: "wayuu", memoria: "wayuu", reto: "pemon", ordenar: "warao" };
 
 function updateScenery(page, id) {
-  let scene = "warao";
+  let scene = page === "inicio" ? "ethan" : "warao";
   if (page === "leccion" && lessonIds.includes(id)) scene = id;
   if (page === "viaje") scene = lessonIds.includes(id) ? id : id === "fin" ? "pemon" : stops[0].id;
   if (page === "jugar") scene = "wayuu";
@@ -337,10 +337,11 @@ function updateScenery(page, id) {
   const key = `${scene}:${allowMotion}`;
   motionToggle.hidden = !allowMotion;
   motionToggle.textContent = motionPaused ? "▶ Activar animación" : "Ⅱ Pausar animación";
+  scenery.style.setProperty("--cover-play", motionPaused ? "paused" : "running");
   if (key === sceneKey) return;
   sceneKey = key;
-  scenery.className = `scenery scenery-${scene}`;
-  scenery.innerHTML = `<img src="./art/escena-${scene}.webp" alt="">${allowMotion ?
+  scenery.className = `scenery scenery-${scene}${allowMotion ? " animated" : ""}`;
+  scenery.innerHTML = `<img src="./art/escena-${scene}.webp" alt="">${allowMotion && scene !== "ethan" ?
     `<video muted ${motionPaused ? "" : "autoplay"} loop playsinline preload="none" poster="./art/escena-${scene}.webp" src="./art/escena-${scene}.mp4"></video>` : ""}`;
   const video = scenery.querySelector("video");
   if (video) {

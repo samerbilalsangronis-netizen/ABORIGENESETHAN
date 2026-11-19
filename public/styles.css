@@ -197,3 +197,7 @@ body{isolation:isolate}
   .tour-card .compact-map{aspect-ratio:2}
   .tour-actions .btn{font-size:.9rem;padding-inline:.65rem}
 }
+
+.scenery-ethan{--scene-position:79% center}
+.scenery-ethan.animated>img{animation:cover-breathe 12s ease-in-out infinite alternate;animation-play-state:var(--cover-play,running);transform-origin:76% 34%}
+@keyframes cover-breathe{to{transform:scale(1.035)}}
