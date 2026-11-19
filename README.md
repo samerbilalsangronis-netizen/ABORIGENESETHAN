@@ -1,6 +1,6 @@
 # Aborígenes Ethan
 
-Web estática para primer grado sobre los pueblos originarios de Venezuela. Incluye tres lecciones, seis juegos y una guía docente.
+Web estática para primer grado sobre los pueblos originarios de Venezuela. Incluye un recorrido visual de tres paradas, tres lecciones, seis juegos y una guía docente.
 
 ## Vercel
 

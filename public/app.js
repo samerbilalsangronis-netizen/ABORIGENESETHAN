@@ -71,7 +71,7 @@ function home() {
     <div class="hero-copy white-card"><p class="eyebrow">Venezuela · Primer grado</p>
       <h1>Explora los <span>pueblos originarios</span></h1>
       <p>Viaja por Venezuela, conoce a sus pueblos y juega con lo que descubras.</p>
-      <div class="actions">${link(`${emoji("🧭")} Explorar`, "#explorar", "gold")}${link(`${emoji("🎲")} Jugar`, "#jugar", "")}</div>
+      <div class="actions">${link(`${emoji("🧭")} ¡Vamos a explorar!`, "#viaje/wayuu", "gold")}${link(`${emoji("🎲")} Jugar`, "#jugar", "")}</div>
     </div>
     <p class="scene-caption">${emoji("📍")} Delta del Orinoco</p>
   </section>
@@ -95,31 +95,84 @@ const sceneDetails = {
 
 const pins = { wayuu: [19.1, 19.1], warao: [78.5, 35.6], pemon: [79.1, 61.9] };
 
-function explore() {
-  return `${pageHead("Explora el mapa", "Toca un nombre para abrir su historia.")}
-    <div class="map"><img src="./art/mapa.svg" alt="Mapa simplificado de Venezuela con tres lugares para explorar">
-      ${Object.entries(pins).map(([id, [x, y]]) => `<a class="pin" style="left:${x}%;top:${y}%" href="#leccion/${id}/1" aria-label="${peoples[id].name}, ${peoples[id].area}">${peoples[id].name}</a>`).join("")}
-    </div>${lessonCards()}`;
+const stops = [
+  { id: "wayuu", title: "Entre cactus y tejidos" },
+  { id: "warao", title: "Por los canales del Orinoco" },
+  { id: "pemon", title: "Entre tepuyes" },
+];
+const tourPath = (id) => `#viaje/${id}`;
+
+function routeMap(current, compact = false) {
+  const coordinates = stops.map(({ id }) => pins[id].join(",")).join(" ");
+  return `<div class="map tour-map${compact ? " compact-map" : ""}">
+    <img src="./art/mapa.svg" alt="Mapa de Venezuela">
+    <svg class="route-line" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <polyline points="${coordinates}" vector-effect="non-scaling-stroke"/>
+    </svg>
+    ${stops.map(({ id }, index) => {
+      const [x, y] = pins[id];
+      return `<a class="pin tour-pin" style="left:${x}%;top:${y}%" href="${tourPath(id)}"
+        aria-label="Parada ${index + 1}, ${peoples[id].area}" ${id === current ? 'aria-current="step"' : ""}>${index + 1}</a>`;
+    }).join("")}
+  </div>`;
 }
 
-function lesson(id, sceneIndex) {
+function explore() {
+  return `${pageHead("Explora el mapa", "Sigue las tres paradas o elige qué historia abrir.")}
+    ${routeMap()}
+    <div class="actions map-actions">${link("Iniciar recorrido visual →", tourPath(stops[0].id), "gold")}</div>
+    ${lessonCards()}`;
+}
+
+function tour(id = stops[0].id) {
+  const index = stops.findIndex(stop => stop.id === id);
+  const stop = stops[index];
+  if (!stop) {
+    return `<section class="scene-stage"><article class="white-card focus-card tour-card">
+      ${back("Mapa", "#explorar")}
+      <h1>¡Completaste el viaje!</h1>
+      <p>Visitaste La Guajira, el delta del Orinoco y la Gran Sabana.</p>
+      ${routeMap(null, true)}
+      <div class="actions">${link("Jugar →", "#jugar", "gold")}${link("Volver al mapa", "#explorar")}</div>
+    </article></section>`;
+  }
+  const people = peoples[id];
+  const previous = stops[index - 1];
+  const next = stops[index + 1];
+  return `<section class="scene-stage tour-stage"><article class="white-card focus-card tour-card">
+    ${back("Mapa", "#explorar")}
+    <p class="eyebrow">Viaje con Ethan · Parada ${index + 1} de ${stops.length}</p>
+    <h1>${people.area}</h1>
+    <p class="tour-subtitle">${stop.title} · Pueblo ${people.name}</p>
+    <p>${people.intro}</p>
+    ${routeMap(id, true)}
+    <div class="actions tour-actions">
+      ${link("Ver la lección", `#leccion/${id}/1/viaje`)}
+      ${next ? link("Siguiente parada →", tourPath(next.id), "gold") : link("Terminar viaje →", tourPath("fin"), "gold")}
+    </div>
+    ${previous ? `<a class="tour-previous" href="${tourPath(previous.id)}">← Parada anterior</a>` : ""}
+  </article></section>`;
+}
+
+function lesson(id, sceneIndex, fromTour = false) {
   const people = peoples[id];
   const [topic, title, description, icon] = people.scenes[sceneIndex];
   const last = sceneIndex === people.scenes.length - 1;
   const detail = sceneDetails[title];
+  const lessonPath = (page) => `#leccion/${id}/${page}${fromTour ? "/viaje" : ""}`;
   return `<section class="scene-stage lesson-stage">
     <article class="white-card focus-card">
-      ${back("Mapa", "#explorar")}
+      ${fromTour ? back("Volver al viaje", tourPath(id)) : back("Mapa", "#explorar")}
       <p class="eyebrow">Pueblo ${people.name} · ${people.area}</p>
       <nav class="steps" aria-label="Páginas de la lección">${people.scenes.map(([label], index) =>
-        `<a href="#leccion/${id}/${index + 1}" aria-label="Página ${index + 1}, ${label}" ${index === sceneIndex ? 'aria-current="step"' : ""}>${index + 1}</a>`).join("")}</nav>
+        `<a href="${lessonPath(index + 1)}" aria-label="Página ${index + 1}, ${label}" ${index === sceneIndex ? 'aria-current="step"' : ""}>${index + 1}</a>`).join("")}</nav>
       <div class="lesson-copy ${detail ? "with-detail" : ""}">
         <div><span class="kicker">${topic}</span><h1 id="scene-title" tabindex="-1">${title}</h1><p>${description}</p></div>
         ${detail ? `<img class="scene-detail" src="./art/${detail}.webp" alt="">` : emoji(icon, "lesson-icon")}
       </div>
       <div class="actions lesson-controls">
-        ${sceneIndex > 0 ? link("← Anterior", `#leccion/${id}/${sceneIndex}`) : ""}
-        ${last ? button("Terminar y jugar →", `finish-lesson:${id}`, "") : link("Siguiente →", `#leccion/${id}/${sceneIndex + 2}`, "")}
+        ${sceneIndex > 0 ? link("← Anterior", lessonPath(sceneIndex)) : ""}
+        ${last ? button(fromTour ? "Volver al viaje →" : "Terminar y jugar →", `finish-lesson:${id}`, "") : link("Siguiente →", lessonPath(sceneIndex + 2), "")}
         ${returnToLesson ? button("Volver a mi pregunta", "return-game") : ""}
       </div>
     </article>
@@ -220,8 +273,8 @@ function gameView(id) {
   let body;
   if (roundState.done) {
     body = `${emoji("🏅", "medal")}<h2 id="game-step" tabindex="-1">¡Actividad completada!</h2>
-      <p>Tu estrella de ${game.name} está en Mi recorrido.</p>
-      <div class="actions">${link("Más juegos", "#jugar", "")}${link("Mi recorrido", "#progreso")}${button("Jugar otra vez", "replay")}</div>`;
+      <p>Tu estrella de ${game.name} está en Mis logros.</p>
+      <div class="actions">${link("Más juegos", "#jugar", "")}${link("Mis logros", "#progreso")}${button("Jugar otra vez", "replay")}</div>`;
   } else if (game.rounds) {
     body = quiz(id, game);
   } else {
@@ -233,7 +286,7 @@ function gameView(id) {
 function progressView() {
   const list = (ids, object, path) => `<ul class="list">${ids.map(id =>
     `<li><a href="${path(id)}"><span>${object[id].name}</span><span>${progress.has(id) ? "★ Completado" : "→ Abrir"}</span></a></li>`).join("")}</ul>`;
-  return `${pageHead("Mi recorrido", `Has completado ${progress.size} de ${validProgress.length} actividades.`)}
+  return `${pageHead("Mis logros", `Has completado ${progress.size} de ${validProgress.length} actividades.`)}
     <progress class="meter" value="${progress.size}" max="${validProgress.length}" aria-label="Actividades completadas"></progress>
     <section>${sectionHead("Lecciones")}${list(lessonIds, peoples, id => `#leccion/${id}/1`)}</section>
     <section class="section">${sectionHead("Juegos")}${list(gameIds, games, id => `#juego/${id}`)}</section>`;
@@ -252,15 +305,15 @@ function guide() {
     </section>
     <section><h2>Dispositivos compartidos</h2>
       <p>El avance se guarda en este navegador. Puedes reiniciarlo si otro estudiante va a comenzar.</p>
-      <div class="actions" style="margin-top:.8rem">${button("Reiniciar el recorrido", "reset")}</div>
+      <div class="actions" style="margin-top:.8rem">${button("Reiniciar los logros", "reset")}</div>
     </section>
   </div>`;
 }
 
 function route() {
-  const [page = "inicio", id, number] = (location.hash.slice(1) || "inicio").split("/");
+  const [page = "inicio", id, number, source] = (location.hash.slice(1) || "inicio").split("/");
   const scene = Number(number) - 1;
-  return { page, id, scene };
+  return { page, id, scene, fromTour: source === "viaje" };
 }
 
 const sceneLabels = {
@@ -273,6 +326,7 @@ const alternateScenes = { cesta: "pemon", ropa: "wayuu", memoria: "wayuu", reto:
 function updateScenery(page, id) {
   let scene = "warao";
   if (page === "leccion" && lessonIds.includes(id)) scene = id;
+  if (page === "viaje") scene = lessonIds.includes(id) ? id : id === "fin" ? "pemon" : stops[0].id;
   if (page === "jugar") scene = "wayuu";
   if (page === "progreso" || page === "guia") scene = "pemon";
   if (page === "juego" && gameIds.includes(id)) {
@@ -297,15 +351,18 @@ function updateScenery(page, id) {
 }
 
 function render() {
-  const { page, id, scene } = route();
+  const { page, id, scene, fromTour } = route();
   let view;
   let active = page;
   if (page === "explorar") view = `<section class="white-card gallery">${explore()}</section>`;
-  else if (page === "jugar") view = `<section class="white-card gallery">${pageHead("Vamos a jugar", "Elige una actividad.")}${gameCards()}</section>`;
+  else if (page === "viaje") {
+    view = tour(lessonIds.includes(id) || id === "fin" ? id : undefined);
+    active = "explorar";
+  } else if (page === "jugar") view = `<section class="white-card gallery">${pageHead("Vamos a jugar", "Elige una actividad.")}${gameCards()}</section>`;
   else if (page === "progreso") view = `<section class="white-card gallery">${progressView()}</section>`;
   else if (page === "guia") view = `<section class="white-card gallery">${guide()}</section>`;
   else if (page === "leccion" && lessonIds.includes(id) && Number.isInteger(scene) && peoples[id].scenes[scene]) {
-    view = lesson(id, scene);
+    view = lesson(id, scene, fromTour);
     active = "explorar";
   } else if (page === "juego" && gameIds.includes(id)) {
     if (currentGame !== id) initGame(id);
@@ -316,7 +373,7 @@ function render() {
   }
   updateScenery(page, id);
   main.innerHTML = view;
-  if (page === "leccion" && sceneLabels[id]) {
+  if ((page === "leccion" || page === "viaje") && sceneLabels[id]) {
     const summary = document.createElement("p");
     summary.className = "sr-only";
     summary.textContent = sceneLabels[id];
@@ -433,14 +490,14 @@ main.addEventListener("click", (event) => {
   const control = event.target.closest("[data-action]");
   if (!control) return;
   const [action, value] = control.dataset.action.split(":");
-  const { page, id } = route();
+  const { page, id, fromTour } = route();
   if (action === "reset" && window.confirm("¿Quieres borrar el avance guardado en este navegador?")) {
     progress.clear();
     saveProgress();
     location.hash = "progreso";
   } else if (action === "finish-lesson") {
     complete(value);
-    location.hash = "jugar";
+    location.hash = fromTour ? tourPath(value) : "jugar";
   } else if (action === "return-game") {
     location.hash = `juego/${returnToLesson}`;
   } else if (page === "juego") {
