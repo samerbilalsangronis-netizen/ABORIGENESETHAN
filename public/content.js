@@ -2,8 +2,6 @@ export const peoples = {
   warao: {
     name: "Warao",
     area: "Delta del Orinoco",
-    art: "delta",
-    alt: "Río entre palmas, una canoa y una casa de madera levantada sobre postes",
     color: "river",
     intro: "Sigue el río y descubre una casa sobre postes.",
     scenes: [
@@ -20,8 +18,6 @@ export const peoples = {
   wayuu: {
     name: "Wayúu",
     area: "La Guajira",
-    art: "guajira",
-    alt: "Paisaje seco con cactus y una enramada que da sombra",
     color: "sand",
     intro: "Busca la sombra y descubre el trabajo de las tejedoras.",
     scenes: [
@@ -38,8 +34,6 @@ export const peoples = {
   pemon: {
     name: "Pemón",
     area: "Gran Sabana",
-    art: "sabana",
-    alt: "Sabana verde, montañas de cima plana y un espacio comunitario con techo",
     color: "hill",
     intro: "Viaja a la Gran Sabana y descubre cómo se hace el casabe.",
     scenes: [
@@ -77,7 +71,7 @@ export const games = {
     ],
   },
   ropa: {
-    name: "¿Cómo se vestían?", icon: "🧵", color: "rose", description: "Identifica prendas del pasado y del presente.",
+    name: "¿Cómo se vestían?", icon: "🧵", color: "rose", description: "Reconoce las prendas que viste en las historias.",
     rounds: [
       question("¿Qué prenda corta usaban algunos hombres Warao en el pasado?", options(["🧣","Bufanda"],["👖","Pantalón"],["🧵","Guayuco"]), 2, "Se sujetaba a la cintura, como viste en la lección.", "¡El guayuco! Era una prenda corta.", "warao", 3),
       question("¿Qué prenda larga aparece en la lección Wayúu?", options(["👗","Manta wayúu"],["👒","Sombrero"],["🧤","Guantes"]), 0, "Es una prenda que puede tener distintos colores.", "¡La manta wayúu!", "wayuu", 3),

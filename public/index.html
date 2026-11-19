@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#fcf7ec">
+  <meta name="theme-color" content="#133b30">
   <meta name="description" content="Explora los pueblos originarios de Venezuela con historias, imágenes y juegos para primer grado.">
   <title>Aborígenes Ethan · Pueblos originarios de Venezuela</title>
   <link rel="icon" href="./art/compass.svg" type="image/svg+xml">
@@ -11,6 +11,7 @@
   <script type="module" src="./app.js"></script>
 </head>
 <body>
+  <div id="scenery" class="scenery" aria-hidden="true"></div>
   <a class="skip" href="#content">Saltar al contenido</a>
   <header class="top">
     <div class="wrap top-inner">
@@ -20,6 +21,7 @@
         <a href="#jugar">Jugar</a>
         <a href="#progreso"><span aria-hidden="true">★</span> Mi recorrido</a>
       </nav>
+      <button id="motion-toggle" class="motion-toggle" type="button" hidden></button>
     </div>
   </header>
   <main id="content" class="wrap" tabindex="-1"></main>

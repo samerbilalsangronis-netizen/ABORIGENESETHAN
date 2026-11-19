@@ -8,6 +8,6 @@ Importar este repositorio desde **Add New → Project** y elegir el preset **Oth
 
 ## Desarrollo
 
-Servir `public/` con un servidor HTTP estático, por ejemplo `python3 -m http.server --directory public 8000`. Las lecciones y preguntas están en `public/content.js`. Los audios se reproducen al pulsar Escuchar. El progreso se guarda únicamente en el navegador.
+Servir `public/` con un servidor HTTP estático, por ejemplo `python3 -m http.server --directory public 8000`. Las lecciones y preguntas están en `public/content.js`. Las escenas de fondo tienen animación sin sonido y respetan la preferencia de movimiento reducido. El progreso se guarda únicamente en el navegador.
 
 Las ilustraciones son recreaciones educativas. La guía docente enlaza las fuentes que respaldan los ejemplos.

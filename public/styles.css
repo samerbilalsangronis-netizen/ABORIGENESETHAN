@@ -27,15 +27,8 @@ h3{font-size:1.3rem}
 main{min-height:70vh;padding-top:2rem;padding-bottom:2.6rem}
 .bottom{display:flex;justify-content:space-between;gap:1rem;padding:1.4rem 0 1.8rem;border-top:1px solid var(--line);font-size:.9rem;color:#485e53;font-weight:750}
 .bottom a{text-underline-offset:4px}
-.hero{display:grid;grid-template-columns:1.02fr 1fr;min-height:490px;border:1px solid #eadeca;border-radius:34px;background:#fffaf0;box-shadow:0 12px 24px #4c3c1b0d;overflow:hidden}
-.hero-copy{align-self:center;padding:clamp(1.6rem,4.5vw,4rem)}
 .eyebrow{text-transform:uppercase;color:#466553;letter-spacing:.125em;font-size:.78rem;font-weight:900;margin-bottom:1rem}
-.hero h1{max-width:8em}
 .hero h1 span{display:block;color:var(--orange)}
-.hero p:not(.eyebrow){font-size:clamp(1rem,1.65vw,1.24rem);max-width:31ch;color:var(--muted);margin:1.15rem 0 1.55rem}
-.hero figure{margin:0;position:relative;background:#a8cfbe;min-height:100%}
-.hero figure img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
-.hero figcaption{position:absolute;bottom:1.15rem;right:1.15rem;background:#fff9e8;color:#2c4d39;border-radius:999px;padding:.55rem .9rem;font-size:.8rem;font-weight:900;box-shadow:0 2px 8px #173a3020}
 .actions{display:flex;align-items:center;flex-wrap:wrap;gap:.65rem}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;border:1.5px solid transparent;border-radius:14px;padding:.75rem 1.05rem;min-height:48px;font-weight:900;font-size:1rem;text-decoration:none;line-height:1.25;background:var(--pine);color:white;box-shadow:0 3px 0 #1a4532}
 .btn:enabled:hover,a.btn:hover{background:#174631}
@@ -50,7 +43,7 @@ main{min-height:70vh;padding-top:2rem;padding-bottom:2.6rem}
 .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:23px;overflow:hidden;box-shadow:0 4px 0 #eae1d3;text-decoration:none;transition:transform .16s}
 .card:hover{transform:translateY(-3px)}
-.card .cover{width:100%;height:clamp(125px,16vw,210px);object-fit:cover}
+.card .cover{width:100%;height:clamp(125px,16vw,210px);object-fit:cover;object-position:70% 56%}
 .card-body{padding:1.1rem 1.2rem 1.25rem;display:grid;gap:.42rem}
 .card-body p{color:var(--muted)}
 .card-body>span:last-child{font-weight:900;color:#2d624b;margin-top:.3rem}
@@ -70,18 +63,9 @@ main{min-height:70vh;padding-top:2rem;padding-bottom:2.6rem}
 .map img{width:100%;height:100%}
 .pin{position:absolute;transform:translate(-50%,-50%);display:grid;place-items:center;border-radius:100px;min-width:46px;min-height:46px;padding:.35rem .55rem;border:2px solid #24553d;background:#ffdf7d;box-shadow:0 3px 0 #345d4390;text-decoration:none;font-size:.85rem;font-weight:900}
 .pin:hover{background:white}
-.lesson{display:grid;grid-template-columns:1.04fr 1fr;overflow:hidden;border:1px solid var(--line);background:var(--paper);border-radius:27px}
-.lesson-art{position:relative;display:flex;min-height:360px}
-.lesson-art img{width:100%;object-fit:cover}
-.scene-icon{position:absolute;left:1rem;bottom:1rem;font-size:2.5rem;display:grid;place-items:center;background:#fff8e6;border-radius:1rem;width:66px;height:66px}
-.lesson-copy{padding:clamp(1.3rem,4vw,3rem);align-self:center}
-.lesson-copy h2{margin:.45rem 0 .75rem}
-.lesson-copy p{font-size:1.13rem;margin-bottom:1.15rem}
 .steps{display:flex;align-items:center;gap:.45rem;margin-bottom:1rem;flex-wrap:wrap}
 .steps a{border:1px solid #cbd8cd;color:var(--ink);background:#fffdf5;border-radius:100px;width:44px;height:44px;display:grid;place-items:center;text-decoration:none;font-weight:900}
 .steps a[aria-current],.steps a:hover{background:var(--pine);color:white}
-.lesson-controls{justify-content:space-between;margin-top:1rem}
-.play{max-width:860px;margin-inline:auto}
 .board{background:var(--paper);border:1px solid var(--line);border-radius:26px;padding:clamp(1.1rem,4vw,2.25rem);box-shadow:0 5px 0 #eae1d3}
 .round-art{border-radius:18px;padding:1rem 1.2rem;margin-bottom:1.1rem;display:flex;gap:1rem;align-items:center}
 .round-art>.game-icon{font-size:2.7rem}
@@ -113,10 +97,88 @@ main{min-height:70vh;padding-top:2rem;padding-bottom:2.6rem}
 [hidden]{display:none!important}
 .sr-only,.skip:not(:focus){position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .skip:focus{position:absolute;z-index:2;background:white;padding:1rem}
-@media(max-width:860px){.wrap{width:calc(100% - 44px)}.hero{min-height:385px}.cards{gap:.7rem}}
-@media(max-width:660px){.wrap{width:calc(100% - 28px)}.top-inner{flex-direction:column;align-items:flex-start;gap:.2rem;padding:.65rem 0}.top nav{width:100%;justify-content:space-between;gap:0}.top nav a{padding:.5rem .62rem;font-size:.88rem}.brand img{width:34px;height:34px}main{padding-top:1rem}.hero,.lesson{grid-template-columns:1fr;border-radius:24px}.hero-copy{padding:1.5rem 1.23rem}.hero h1{max-width:12em}.hero figure{min-height:225px}.hero figcaption{right:.7rem;bottom:.65rem}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.card-body{padding:.85rem}.section-head{align-items:flex-start}.cover{min-height:124px}.section{margin-top:1.85rem}.lesson-art{min-height:0;height:235px}.lesson-art img{height:100%}.bottom{font-size:.8rem}.map{aspect-ratio:1.65}.round-art{gap:.6rem}.round-art>.game-icon{font-size:2rem}}
 @media(max-width:365px){.hero .actions .btn{font-size:.9rem;padding:.65rem .7rem}.cards{grid-template-columns:1fr}.option{font-size:.86rem}}
 @media(prefers-reduced-motion:reduce){*,*::after,*::before{scroll-behavior:auto!important;transition:none!important}}
 .choice-art{width:100%;height:85px;object-fit:contain;border-radius:9px;background:#fff3dc}
 .choice-art.landscape{object-fit:cover}
-.lesson-art .scene-detail{position:absolute;left:1rem;bottom:1rem;width:clamp(120px,20vw,170px);height:clamp(112px,15vw,145px);object-fit:cover;border-radius:16px;border:3px solid #fff3d8;box-shadow:0 2px 10px #172e24aa}
+
+body{background:#183c30}
+.scenery{position:fixed;inset:0;z-index:-1;isolation:isolate;background:#204d3d;overflow:hidden;--scene-position:72% center}
+.scenery-wayuu{background:#96683a;--scene-position:73% center}
+.scenery-pemon{background:#315842;--scene-position:75% center}
+.scenery>img,.scenery>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--scene-position)}
+.scenery>video{opacity:0;transition:opacity .45s}
+.scenery>video.ready{opacity:1}
+.scenery::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#10251960,transparent 62%),linear-gradient(0deg,#10291cb0,transparent 24%);pointer-events:none}
+.top{background:#fffdf4f2;position:relative;z-index:1}
+main{padding-top:1.35rem}
+.bottom{border-top:1px solid #ffffff65;color:#fffdf1;text-shadow:0 1px 3px #123224;padding-inline:.15rem}
+.white-card{background:#fff;border:1px solid #f7eed9;border-radius:29px;box-shadow:0 14px 50px #15281b39}
+.gallery{padding:clamp(1rem,3vw,2.25rem)}
+.gallery .section-head{margin-bottom:1.15rem}
+.gallery + .gallery{margin-top:1.3rem}
+.hero,.scene-stage{min-height:calc(100svh - 100px);display:flex;align-items:center;position:relative;padding:1.2rem 0 2.5rem}
+.hero-copy{width:min(47%,520px);padding:clamp(1.45rem,4vw,3.4rem)}
+.hero h1{font-size:clamp(2.45rem,5.45vw,5.1rem);max-width:9em}
+.hero h1 span{display:block;color:var(--orange)}
+.hero p:not(.eyebrow){font-size:clamp(1rem,1.65vw,1.22rem);max-width:34ch;color:var(--muted);margin:1.1rem 0 1.45rem}
+.scene-caption{position:absolute;bottom:1.15rem;right:0;background:#fff9eb;color:#2c4d39;border-radius:999px;padding:.5rem .85rem;font-size:.85rem;font-weight:900;box-shadow:0 2px 8px #173a3040}
+.focus-card{width:min(55%,650px);padding:clamp(1.05rem,3.1vw,2.2rem)}
+.focus-card .breadcrumb{margin:-.35rem 0 .43rem}
+.focus-card .eyebrow{margin-bottom:.85rem}
+.focus-card .activity-name{font-size:clamp(1.3rem,2.8vw,1.9rem);margin:0 0 .85rem}
+.focus-card .round-art{background:#fff;border-top:1px solid #eee6d7;padding:.86rem 0 .15rem;margin-bottom:.75rem}
+.focus-card .round-art>.game-icon{font-size:1.95rem}
+.focus-card.board>*,.focus-card .lesson-copy{scroll-margin-block:1rem}
+.lesson-copy{display:grid;grid-template-columns:minmax(0,1fr) max-content;gap:.8rem;align-items:center;margin-top:.95rem}
+.lesson-copy h1{font-size:clamp(1.9rem,4vw,3rem);margin:.35rem 0 .65rem}
+.lesson-copy p{color:#394e44;font-size:clamp(1.05rem,1.55vw,1.21rem)}
+.lesson-icon{display:grid;place-items:center;align-self:start;font-size:2.4rem;width:66px;height:66px;border-radius:17px;background:#f8ecce}
+.scene-detail{width:clamp(80px,10vw,125px);height:clamp(80px,10vw,125px);object-fit:contain;border-radius:16px;border:1px solid #eee4d3;background:#fbf6e7}
+.lesson-controls{margin-top:1.15rem}
+.board .option{min-height:96px}
+.board .notice{padding:.66rem .78rem}
+@media(max-width:1000px){.wrap{width:calc(100% - 44px)}.cards{gap:.7rem}.hero-copy{width:min(55%,490px)}}
+@media(max-width:740px){
+  .wrap{width:calc(100% - 28px)}
+  .top-inner{flex-direction:column;align-items:flex-start;gap:.2rem;padding:.55rem 0}
+  .top nav{width:100%;justify-content:space-between;gap:0}
+  .top nav a{padding:.42rem .5rem;font-size:.88rem}
+  .brand img{width:34px;height:34px}
+  main{padding-top:.85rem}
+  .scenery{--scene-position:80% 38%}
+  .scenery-wayuu{--scene-position:79% 38%}
+  .scenery-pemon{--scene-position:77% 38%}
+  .scenery>img,.scenery>video{height:calc(52svh + 115px)}
+  .scenery::after{background:linear-gradient(0deg,#163a2e 12%,#163a2e98 31%,transparent 63%);}
+  .hero,.scene-stage{display:block;padding:clamp(195px,36svh,355px) 0 .1rem;min-height:0}
+  .hero-copy,.focus-card{width:100%;border-radius:22px}
+  .hero-copy{padding:1.2rem}
+  .scene-caption{bottom:auto;top:.15rem;font-size:.73rem}
+  .hero h1{font-size:clamp(2.15rem,9vw,3.4rem);max-width:11em}
+  .hero h1 span{display:inline}
+  .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .card-body{padding:.85rem}
+  .section{margin-top:1.4rem}
+  .cover{min-height:115px}
+  .bottom{font-size:.8rem}
+  .map{aspect-ratio:1.6}
+  .round-art{gap:.6rem}
+  .board .actions{gap:.5rem}
+  .board .btn{font-size:.9rem;padding:.63rem .65rem}
+  .board .option{min-height:88px;font-size:.88rem}
+  .board .choice-art{height:63px}
+  .lesson-icon{width:48px;height:48px;font-size:1.8rem}
+}
+@media(max-width:365px){.cards{grid-template-columns:1fr}.option{font-size:.83rem}.hero .btn{font-size:.9rem;padding:.62rem .68rem}}
+
+body{isolation:isolate}
+.top nav{margin-left:auto}
+.motion-toggle{background:#f3e8c6;border:1px solid #e6d7af;color:#274638;border-radius:999px;min-height:44px;padding:.38rem .75rem;white-space:nowrap;font-size:.79rem;font-weight:900}
+.motion-toggle:hover{background:#f7df92}
+@media(max-width:740px){
+  .top-inner{position:relative}
+  .top nav{margin-left:0}
+  .motion-toggle{position:absolute;right:0;top:.3rem;font-size:.68rem;padding:.2rem .45rem}
+}
+@media(max-width:330px){.brand{gap:.35rem;font-size:1.05rem}.motion-toggle{font-size:.6rem;padding:.18rem .3rem}}
