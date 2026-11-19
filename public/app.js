@@ -198,10 +198,10 @@ function initGame(id) {
   };
 }
 
-function choice(label, icon, action, state = "", disabled = false, marker = "") {
+function choice(label, icon, action, state = "", disabled = false, marker = "", textOnly = false) {
   const picture = itemImages[label] ?? placeImages[label];
   return `<button type="button" class="option ${state}" data-action="${action}" ${disabled ? "disabled" : ""}>
-    ${picture ? itemArt(picture, Boolean(placeImages[label])) : emoji(icon)}<span>${escapeHtml(label)}${marker ? ` ${marker}` : ""}</span>
+    ${textOnly ? "" : picture ? itemArt(picture, Boolean(placeImages[label])) : emoji(icon)}<span>${escapeHtml(label)}${marker ? ` ${marker}` : ""}</span>
   </button>`;
 }
 
@@ -223,11 +223,12 @@ function quiz(id, game) {
   const basket = id === "cesta" ? Object.values(peoples).slice(0, state.index + (state.solved ? 1 : 0)) : [];
   const feedback = state.solved ? item.feedback : state.hint ? item.hint : "";
   return `${roundArt(game, item.title, `Pregunta ${state.index + 1} de ${game.rounds.length}`)}
+    ${item.image ? `<img class="identify-image" src="./art/${item.image}.webp" alt="${escapeHtml(item.description)}">` : ""}
     <div class="actions">${!state.solved ? button("Ver pista", "hint") : ""}${button("Ver la lección", "review-lesson")}</div>
     <div class="choices">${item.choices.map(({ label, icon }, index) => {
       const correct = state.solved && index === item.answer;
       const wrong = !state.solved && state.selected === index;
-      return choice(label, icon, `answer:${index}`, correct ? "correct" : wrong ? "wrong" : "", state.solved, correct ? "✓" : wrong ? "↻" : "");
+      return choice(label, icon, `answer:${index}`, correct ? "correct" : wrong ? "wrong" : "", state.solved, correct ? "✓" : wrong ? "↻" : "", Boolean(item.image));
     }).join("")}</div>
     ${id === "cesta" ? `<p class="basket">${emoji("🧺")} Cesta ${basket.length} de 3 ${basket.map(people => emoji(people.food[0])).join("")}</p>` : ""}
     ${feedback ? notice(feedback, state.solved) : ""}

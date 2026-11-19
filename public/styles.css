@@ -254,3 +254,5 @@ main.wrap,.bottom.wrap{grid-column:2}
  .tour-map .tour-pin{width:46px;height:46px}
  .tour-pin span{font-size:.75rem;white-space:normal;width:max-content;max-width:100px;text-align:center;line-height:1.15}
 }
+
+.identify-image{display:block;width:100%;height:clamp(135px,24vh,220px);object-fit:contain;margin:.55rem auto;background:#fff;border-radius:18px}

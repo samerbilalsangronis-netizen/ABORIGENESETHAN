@@ -53,7 +53,21 @@ const options = (...choices) => choices.map(([icon, label]) => ({ icon, label })
 const question = (title, choices, answer, hint, feedback, people, scene) =>
   ({ title, choices, answer, hint, feedback, people, scene });
 
+function identify(image, description, labels, answer, hint, feedback, people, scene) {
+  return { title: "¿Qué ves en la imagen?", image, description, choices: labels.map(label => ({ label })), answer, hint, feedback, people, scene };
+}
+
 export const games = {
+  identificar: {
+    name: "¿Qué ves?", icon: "🔎", color: "sand", description: "Mira la imagen y toca su nombre.",
+    rounds: [
+      identify("canoa", "Embarcación larga y estrecha de madera.", ["Canoa", "Cesta", "Remo"], 0, "En ella puedes viajar por el río.", "¡Una canoa! Sirve para navegar.", "warao", 4),
+      identify("maiz", "Mazorca cubierta de pequeños granos amarillos.", ["Yuca", "Maíz", "Casabe"], 1, "Sus granos crecen en una mazorca.", "¡Es maíz! Reconociste sus granos.", "wayuu", 2),
+      identify("manta", "Prenda larga, ancha y de colores.", ["Sombrero", "Guantes", "Manta wayúu"], 2, "Es una prenda que cubre el cuerpo.", "¡Es una manta wayúu!", "wayuu", 3),
+      identify("pescado", "Animal con aletas, escamas y cola.", ["Pescado", "Tortuga", "Guacamaya"], 0, "Nada con sus aletas.", "¡Es un pescado!", "warao", 2),
+      identify("casabe", "Torta redonda, delgada y plana.", ["Maíz", "Casabe", "Plátano"], 1, "Se prepara con yuca.", "¡Es casabe!", "pemon", 2),
+    ],
+  },
   lugares: {
     name: "¿Dónde vivían?", icon: "🏡", color: "river", description: "Encuentra el paisaje o el lugar de la historia.",
     rounds: [
