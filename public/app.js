@@ -103,22 +103,22 @@ const stops = [
 const tourPath = (id) => `#viaje/${id}`;
 
 function routeMap(current, compact = false) {
-  const coordinates = stops.map(({ id }) => pins[id].join(",")).join(" ");
+  const landscapes = { wayuu: "guajira", warao: "delta", pemon: "sabana" };
   return `<div class="map tour-map${compact ? " compact-map" : ""}">
     <img src="./art/mapa.svg" alt="Mapa de Venezuela">
     <svg class="route-line" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-      <polyline points="${coordinates}" vector-effect="non-scaling-stroke"/>
+      <path d="M19.1 19.1 C36 4 57 20 78.5 35.6 Q90 49 79.1 61.9" vector-effect="non-scaling-stroke"/>
     </svg>
     ${stops.map(({ id }, index) => {
       const [x, y] = pins[id];
       return `<a class="pin tour-pin" style="left:${x}%;top:${y}%" href="${tourPath(id)}"
-        aria-label="Parada ${index + 1}, ${peoples[id].area}" ${id === current ? 'aria-current="step"' : ""}>${index + 1}</a>`;
+        aria-label="Parada ${index + 1}, ${peoples[id].area}" ${id === current ? 'aria-current="step"' : ""}><img src="./art/${landscapes[id]}.webp" alt=""><b>${index + 1}</b><span>${peoples[id].area}</span></a>`;
     }).join("")}
   </div>`;
 }
 
 function explore() {
-  return `${pageHead("Explora el mapa", "Sigue las tres paradas o elige qué historia abrir.")}
+  return `${pageHead("Explora el mapa", "Toca un paisaje para viajar con Ethan.")}
     ${routeMap()}
     <div class="actions map-actions">${link("Iniciar recorrido visual →", tourPath(stops[0].id), "gold")}</div>
     ${lessonCards()}`;

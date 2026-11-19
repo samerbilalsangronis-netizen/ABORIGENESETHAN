@@ -1,8 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 360" preserveAspectRatio="none">
-<defs><pattern id="water" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M2 16q6-4 12 0t12 0" fill="none" stroke="#b9d9d0" stroke-width="1" opacity=".65"/></pattern></defs>
-<rect width="760" height="360" fill="#deefeb"/><rect width="760" height="360" fill="url(#water)"/>
-<polygon points="169.7,56.0 168.5,62.4 143.3,65.6 157.3,77.8 156.8,91.9 137.8,107.6 154.1,129.0 172.6,127.3 182.3,107.8 168.9,98.3 166.8,77.8 220.3,66.9 214.4,54.1 229.4,45.6 244.9,64.6 275.0,65.0 303.0,80.1 304.7,89.0 343.3,89.3 389.2,86.5 413.8,98.6 446.7,101.9 470.8,93.5 471.3,86.7 524.6,85.1 576.1,84.7 539.6,92.7 554.3,105.4 588.7,107.4 621.3,120.7 628.1,142.3 650.5,141.7 667.4,148.1 633.3,164.0 629.6,173.8 644.3,183.8 633.6,188.9 607.1,193.2 608.0,205.7 596.4,213.1 625.5,233.6 631.1,241.2 615.4,251.5 567.3,261.6 536.4,265.8 524.0,272.2 489.8,265.4 458.0,262.0 449.9,264.5 469.2,271.5 467.4,289.6 473.4,306.6 509.8,308.9 512.1,314.6 481.4,322.3 476.4,333.7 458.7,338.1 426.7,344.4 418.4,352.7 385.0,354.4 361.3,340.2 348.2,313.2 336.8,303.8 321.2,297.8 343.0,284.4 341.5,278.4 329.3,270.3 320.6,252.4 324.0,233.0 333.6,224.0 341.3,209.4 326.1,204.8 301.6,207.9 270.6,206.4 253.3,209.3 223.0,186.1 198.0,182.6 142.7,185.2 132.5,175.8 121.9,173.6 120.4,167.9 125.5,157.9 122.1,147.1 112.6,141.1 107.1,128.7 84.9,126.9 96.8,111.1 102.1,91.8 114.6,81.8 131.2,74.1 142.1,60.6 169.7,56.0" fill="#bbd39f" stroke="#67896a" stroke-width="3" stroke-linejoin="round"/>
-<text x="351" y="119" text-anchor="middle" font-size="25" font-family="sans-serif" font-weight="bold" letter-spacing="2" fill="#31583f">VENEZUELA</text>
-<path d="M699 263v49m-24-24h48m-24-25 5 23-5 2-5-2z" fill="#52745e" stroke="#52745e" stroke-width="2" stroke-linecap="round"/>
-<text x="699" y="256" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#31583f">N</text>
+<defs>
+ <linearGradient id="sea" x2=".4" y2="1" gradientUnits="objectBoundingBox"><stop stop-color="#9cdad7"/><stop offset="1" stop-color="#e4f1da"/></linearGradient>
+ <linearGradient id="land" x2=".8" y2="1"><stop stop-color="#ecd58d"/><stop offset=".52" stop-color="#c4d789"/><stop offset="1" stop-color="#87b782"/></linearGradient>
+ <pattern id="waves" width="44" height="28" patternUnits="userSpaceOnUse"><path d="M2 14q5-4 10 0t10 0" fill="none" stroke="#4c9696" opacity=".22"/></pattern>
+ <path id="country" d="M169.7,56.0 L168.5,62.4 L143.3,65.6 L157.3,77.8 L156.8,91.9 L137.8,107.6 L154.1,129.0 L172.6,127.3 L182.3,107.8 L168.9,98.3 L166.8,77.8 L220.3,66.9 L214.4,54.1 L229.4,45.6 L244.9,64.6 L275.0,65.0 L303.0,80.1 L304.7,89.0 L343.3,89.3 L389.2,86.5 L413.8,98.6 L446.7,101.9 L470.8,93.5 L471.3,86.7 L524.6,85.1 L576.1,84.7 L539.6,92.7 L554.3,105.4 L588.7,107.4 L621.3,120.7 L628.1,142.3 L650.5,141.7 L667.4,148.1 L633.3,164.0 L629.6,173.8 L644.3,183.8 L633.6,188.9 L607.1,193.2 L608.0,205.7 L596.4,213.1 L625.5,233.6 L631.1,241.2 L615.4,251.5 L567.3,261.6 L536.4,265.8 L524.0,272.2 L489.8,265.4 L458.0,262.0 L449.9,264.5 L469.2,271.5 L467.4,289.6 L473.4,306.6 L509.8,308.9 L512.1,314.6 L481.4,322.3 L476.4,333.7 L458.7,338.1 L426.7,344.4 L418.4,352.7 L385.0,354.4 L361.3,340.2 L348.2,313.2 L336.8,303.8 L321.2,297.8 L343.0,284.4 L341.5,278.4 L329.3,270.3 L320.6,252.4 L324.0,233.0 L333.6,224.0 L341.3,209.4 L326.1,204.8 L301.6,207.9 L270.6,206.4 L253.3,209.3 L223.0,186.1 L198.0,182.6 L142.7,185.2 L132.5,175.8 L121.9,173.6 L120.4,167.9 L125.5,157.9 L122.1,147.1 L112.6,141.1 L107.1,128.7 L84.9,126.9 L96.8,111.1 L102.1,91.8 L114.6,81.8 L131.2,74.1 L142.1,60.6 L169.7,56.0Z"/>
+ <clipPath id="inside"><use href="#country"/></clipPath>
+ <pattern id="woods" width="36" height="29" patternUnits="userSpaceOnUse"><path d="m6 20 5-9 5 9m6 3 4-7 4 7" fill="none" stroke="#65864e" opacity=".3" stroke-width="1.8"/></pattern>
+</defs>
+<rect width="760" height="360" fill="url(#sea)"/><rect width="760" height="360" fill="url(#waves)"/>
+<use href="#country" transform="translate(0 4)" fill="#789b80"/>
+<use href="#country" fill="url(#land)" stroke="#fff3cc" stroke-width="5" stroke-linejoin="round"/>
+<g clip-path="url(#inside)"><path d="M280 255Q380 200 450 218T675 162V360H280Z" fill="url(#woods)"/>
+<path d="M110 193q40-50 101-66l-18 21 47-21-30 27q-40 2-77 54" fill="#a4af70" opacity=".66"/></g>
+<text x="346" y="161" text-anchor="middle" font-size="23" font-family="serif" font-weight="bold" letter-spacing="3" fill="#36583b">Venezuela</text>
+<text x="376" y="34" text-anchor="middle" font-size="17" font-family="serif" font-style="italic" fill="#396f76">Mar Caribe</text>
+<g transform="translate(68 283)" fill="#3d7064"><circle r="22" fill="none" stroke="#53897d"/><path d="m0-20 6 21-6-3-6 3z"/><path d="m0 20 6-19-6 3-6-3z" fill="#fff1c4"/><text y="-28" text-anchor="middle" font-family="sans-serif" font-size="13">N</text></g>
 </svg>
