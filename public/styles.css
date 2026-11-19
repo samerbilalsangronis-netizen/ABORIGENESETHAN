@@ -201,3 +201,24 @@ body{isolation:isolate}
 .scenery-ethan{--scene-position:79% center}
 .scenery-ethan.animated>img{animation:cover-breathe 12s ease-in-out infinite alternate;animation-play-state:var(--cover-play,running);transform-origin:76% 34%}
 @keyframes cover-breathe{to{transform:scale(1.035)}}
+
+/* Individual trail buttons keep the landscape visible between controls. */
+body{display:grid;grid-template-columns:148px minmax(0,1fr);align-content:start}
+.top{grid-column:1;grid-row:1;background:transparent;border:0;align-self:start;padding:18px 0 0 14px}
+.top .top-inner,.top nav{display:flex;flex-direction:column;align-items:stretch;gap:8px;width:100%;margin:0;padding:0}
+.top .brand,.top nav a,.top .motion-toggle{position:static;display:flex;align-items:center;justify-content:center;gap:5px;min-height:44px;padding:7px 8px;border:1px solid #d7ceab;border-radius:16px;background:#fffaf0;box-shadow:0 3px 8px #203a2833;text-align:center;font-size:.9rem}
+.top .brand{flex-direction:column;gap:1px}
+.top .brand img{width:32px;height:32px}
+.top nav a:last-child{background:#ffebad}
+.top nav a:hover,.top nav [aria-current]{background:#dbefcb}
+.top .motion-toggle{font-size:.76rem}
+.top .motion-toggle[hidden]{display:none}
+main.wrap,.bottom.wrap{grid-column:2}
+@media(max-width:740px){
+  body{display:block}
+  .top{width:122px;padding:10px 0 0 10px}
+  .top .top-inner,.top nav{gap:5px}
+  .top .brand{font-size:.8rem}
+  .top .motion-toggle{font-size:.68rem}
+  .hero,.scene-stage{padding-top:12px}
+}
