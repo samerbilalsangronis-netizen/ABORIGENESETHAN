@@ -1,5 +1,7 @@
 import { games, pairs, peoples, sources } from "./content.js";
 
+import { listenButton, stopListening } from "./narracion.js";
+
 const main = document.querySelector("main");
 const motionToggle = document.querySelector("#motion-toggle");
 const scenery = document.querySelector("#scenery");
@@ -71,7 +73,7 @@ function home() {
     <div class="hero-copy"><p class="eyebrow">Venezuela · Primer grado</p>
       <h1>Explora con <span>Ethan</span></h1>
       <p>Una aventura por los pueblos originarios de Venezuela.</p>
-      <div class="actions">${link(`${emoji("🧭")} ¡Vamos a explorar!`, "#viaje/wayuu", "gold")}${link(`${emoji("🎲")} Jugar`, "#jugar", "")}</div>
+      <div class="actions">${listenButton("Escuchar a Ethan", "", true)}${link(`${emoji("🧭")} ¡Vamos a explorar!`, "#viaje/wayuu", "gold")}${link(`${emoji("🎲")} Jugar`, "#jugar", "")}</div>
     </div>
     <p class="scene-caption">${emoji("📍")} Gran Sabana</p>
   </section>
@@ -171,6 +173,7 @@ function lesson(id, sceneIndex, fromTour = false) {
         ${detail ? `<img class="scene-detail" src="./art/${detail}.webp" alt="">` : emoji(icon, "lesson-icon")}
       </div>
       <div class="actions lesson-controls">
+        ${listenButton("Escuchar la lección", title + ". " + description)}
         ${sceneIndex > 0 ? link("← Anterior", lessonPath(sceneIndex)) : ""}
         ${last ? button(fromTour ? "Volver al viaje →" : "Terminar y jugar →", `finish-lesson:${id}`, "") : link("Siguiente →", lessonPath(sceneIndex + 2), "")}
         ${returnToLesson ? button("Volver a mi pregunta", "return-game") : ""}
@@ -224,7 +227,7 @@ function quiz(id, game) {
   const feedback = state.solved ? item.feedback : state.hint ? item.hint : "";
   return `${roundArt(game, item.title, `Pregunta ${state.index + 1} de ${game.rounds.length}`)}
     ${item.image ? `<img class="identify-image" src="./art/${item.image}.webp" alt="${escapeHtml(item.description)}">` : ""}
-    <div class="actions">${!state.solved ? button("Ver pista", "hint") : ""}${button("Ver la lección", "review-lesson")}</div>
+    <div class="actions">${listenButton("Escuchar", [item.title, ...item.choices.map(choice => choice.label), feedback].filter(Boolean).join(". "))}${!state.solved ? button("Ver pista", "hint") : ""}${button("Ver la lección", "review-lesson")}</div>
     <div class="choices">${item.choices.map(({ label, icon }, index) => {
       const correct = state.solved && index === item.answer;
       const wrong = !state.solved && state.selected === index;
@@ -238,7 +241,7 @@ function quiz(id, game) {
 function memory(game) {
   const state = roundState;
   return `${roundArt(game, "Encuentra las parejas", `${state.matched.length / 2} de 3 parejas`)}
-    <p>Voltea dos cartas. Busca dos imágenes iguales.</p>
+    <p>Voltea dos cartas. Busca dos imágenes iguales.</p>${listenButton("Escuchar", "Voltea dos cartas. Busca dos imágenes iguales. " + state.fact)}
     <div class="memory">${state.deck.map((pair, index) => {
       const matched = state.matched.includes(index);
       const visible = state.open.includes(index) || matched;
@@ -256,6 +259,7 @@ function sequence(game) {
   return `${roundArt(game, "¿Qué pasó primero?", `Historia del pueblo ${people.name}`)}
     <p>Toca las escenas en orden. Puedes deshacer tu última elección.</p>
     <div class="actions">
+      ${listenButton("Escuchar", "Toca las escenas en orden. " + state.shuffledOrder.map(index => people.sequence[index][1]).join(". "))}
       <label for="sequence-people">Historia</label>
       <select id="sequence-people" class="btn secondary">${lessonIds.map(id => `<option value="${id}" ${id === state.sequencePeople ? "selected" : ""}>${peoples[id].name}</option>`).join("")}</select>
     </div>
@@ -353,6 +357,7 @@ function updateScenery(page, id) {
 }
 
 function render() {
+  stopListening();
   const { page, id, scene, fromTour } = route();
   let view;
   let active = page;
