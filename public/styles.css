@@ -275,11 +275,11 @@ main.wrap,.bottom.wrap{grid-column:2}
 }
 
 .reading-lesson .scenery{background:#17352d}
-.reading-lesson .scenery>img{left:auto;right:0;width:82%;height:100%;object-fit:contain;object-position:right center}
+.reading-lesson .scenery>img{inset:0 0 auto auto;width:auto;height:100%;max-width:none;object-fit:contain;--edge-fade:linear-gradient(to right,transparent,#000 36%);-webkit-mask-image:var(--edge-fade);mask-image:var(--edge-fade)}
 .reading-lesson .scenery::after{background:linear-gradient(90deg,#17352d 8%,#17352df5 27%,#17352da8 43%,transparent 69%),linear-gradient(0deg,#17352d80,transparent 30%)}
 .lesson-overlay{width:min(44vw,540px)}
 @media(max-width:740px){
- .reading-lesson .scenery>img{width:100%;height:55svh;object-position:center top}
+ .reading-lesson .scenery>img{left:50%;right:auto;transform:translateX(-50%);width:100%;height:auto;--edge-fade:linear-gradient(to bottom,#000 56%,transparent 100%)}
  .reading-lesson .scenery::after{background:linear-gradient(180deg,transparent 25svh,#17352d 53svh)}
  .lesson-stage{padding-top:39svh}
  .lesson-overlay{width:100%}
