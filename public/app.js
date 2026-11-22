@@ -90,10 +90,12 @@ const placeImages = {
   "La Guajira": "guajira", "Delta del Orinoco": "delta", "Gran Sabana": "sabana",
 };
 const itemArt = (filename, isPlace) => `<img class="choice-art${isPlace ? " landscape" : ""}" src="./art/${filename}.webp" alt="">`;
-const sceneDetails = {
-  "El guayuco": "guayuco", "La manta wayúu": "manta", "Peces del delta": "pescado",
-  "Maíz y frijoles": "maiz", "Yuca y casabe": "casabe", "El río y la canoa": "canoa",
+const lessonArt = {
+  warao: ["delta", "escena-warao", "pescado", "guayuco", "canoa"],
+  wayuu: ["guajira", "escena-wayuu", "maiz", "manta", "escena-wayuu"],
+  pemon: ["sabana", "escena-pemon", "casabe", "mesa", "escena-pemon"],
 };
+
 
 const pins = { wayuu: [19.1, 19.1], warao: [78.5, 35.6], pemon: [79.1, 61.9] };
 
@@ -158,21 +160,17 @@ function tour(id = stops[0].id) {
 
 function lesson(id, sceneIndex, fromTour = false) {
   const people = peoples[id];
-  const [topic, title, description, icon, illustration, imageDescription] = people.scenes[sceneIndex];
+  const [topic, title, description, , , imageDescription] = people.scenes[sceneIndex];
   const last = sceneIndex === people.scenes.length - 1;
-  const detail = sceneDetails[title];
   const lessonPath = (page) => `#leccion/${id}/${page}${fromTour ? "/viaje" : ""}`;
   return `<section class="scene-stage lesson-stage">
-    <article class="white-card focus-card">
+    <article class="lesson-overlay">
       ${fromTour ? back("Volver al viaje", tourPath(id)) : back("Mapa", "#explorar")}
       <p class="eyebrow">Pueblo ${people.name} · ${people.area}</p>
       <nav class="steps" aria-label="Páginas de la lección">${people.scenes.map(([label], index) =>
         `<a href="${lessonPath(index + 1)}" aria-label="Página ${index + 1}, ${label}" ${index === sceneIndex ? 'aria-current="step"' : ""}>${index + 1}</a>`).join("")}</nav>
-      ${illustration ? `<img class="story-image" src="./art/${illustration}.webp" alt="${imageDescription}">` : ""}
-      <div class="lesson-copy ${detail ? "with-detail" : ""}">
-        <div><span class="kicker">${topic}</span><h1 id="scene-title" tabindex="-1">${title}</h1><p>${description}</p></div>
-        ${detail ? `<img class="scene-detail" src="./art/${detail}.webp" alt="">` : illustration ? "" : emoji(icon, "lesson-icon")}
-      </div>
+      ${imageDescription ? `<p class="sr-only">${imageDescription}</p>` : ""}
+      <div class="lesson-copy"><span class="kicker">${topic}</span><h1 id="scene-title" tabindex="-1">${title}</h1><p>${description}</p></div>
       <div class="actions lesson-controls">
         ${listenButton("Escuchar la lección", title + ". " + description)}
         ${sceneIndex > 0 ? link("← Anterior", lessonPath(sceneIndex)) : ""}
@@ -340,14 +338,18 @@ function updateScenery(page, id) {
     if (id === "ordenar") scene = roundState.sequencePeople;
   }
   const allowMotion = !reducedMotion.matches && !navigator.connection?.saveData;
-  const key = `${scene}:${allowMotion}`;
-  motionToggle.hidden = !allowMotion;
+  const index = route().scene;
+  const lessonScene = page === "leccion" && peoples[id]?.scenes[index];
+  const art = lessonScene ? lessonScene[4] || lessonArt[id][index] : `escena-${scene}`;
+  document.body.classList.toggle("reading-lesson", Boolean(lessonScene));
+  const key = `${art}:${allowMotion}:${Boolean(lessonScene)}`;
+  motionToggle.hidden = !allowMotion || Boolean(lessonScene);
   motionToggle.textContent = motionPaused ? "▶ Activar animación" : "Ⅱ Pausar animación";
   scenery.style.setProperty("--cover-play", motionPaused ? "paused" : "running");
   if (key === sceneKey) return;
   sceneKey = key;
   scenery.className = `scenery scenery-${scene}${allowMotion ? " animated" : ""}`;
-  scenery.innerHTML = `<img src="./art/escena-${scene}.webp" alt="">${allowMotion && scene !== "ethan" ?
+  scenery.innerHTML = `<img src="./art/${art}.webp" alt="">${!lessonScene && allowMotion && scene !== "ethan" ?
     `<video muted ${motionPaused ? "" : "autoplay"} loop playsinline preload="none" poster="./art/escena-${scene}.webp" src="./art/escena-${scene}.mp4"></video>` : ""}`;
   const video = scenery.querySelector("video");
   if (video) {
@@ -381,7 +383,7 @@ function render() {
   }
   updateScenery(page, id);
   main.innerHTML = view;
-  if ((page === "leccion" || page === "viaje") && sceneLabels[id]) {
+  if (page === "viaje" && sceneLabels[id]) {
     const summary = document.createElement("p");
     summary.className = "sr-only";
     summary.textContent = sceneLabels[id];
@@ -536,7 +538,8 @@ function navigate() {
   render();
   const nextRoute = location.hash;
   if (lastRoute && nextRoute.startsWith("#leccion/") && lastRoute.split("/").slice(0, 2).join("/") === nextRoute.split("/").slice(0, 2).join("/")) {
-    main.querySelector("#scene-title")?.focus();
+    window.scrollTo(0, 0);
+    main.querySelector("#scene-title")?.focus({ preventScroll: true });
   } else {
     window.scrollTo(0, 0);
     main.focus({ preventScroll: true });
