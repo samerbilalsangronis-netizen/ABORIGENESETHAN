@@ -3,9 +3,7 @@ import { games, pairs, peoples, sources } from "./content.js";
 import { listenButton, stopListening } from "./narracion.js";
 
 const main = document.querySelector("main");
-const motionToggle = document.querySelector("#motion-toggle");
 const scenery = document.querySelector("#scenery");
-const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const announcement = document.querySelector("#announcement");
 const progressKey = "aborigenes-ethan-recorrido-v1";
 const lessonIds = Object.keys(peoples);
@@ -16,7 +14,6 @@ let roundState;
 let currentGame;
 let returnToLesson;
 let sceneKey = "";
-let motionPaused = false;
 let pendingFlip;
 let lastRoute = "";
 
@@ -91,9 +88,9 @@ const placeImages = {
 };
 const itemArt = (filename, isPlace) => `<img class="choice-art${isPlace ? " landscape" : ""}" src="./art/${filename}.webp" alt="">`;
 const lessonArt = {
-  warao: ["delta", "escena-warao", "pescado", "guayuco", "canoa"],
-  wayuu: ["guajira", "escena-wayuu", "maiz", "manta", "escena-wayuu"],
-  pemon: ["sabana", "escena-pemon", "casabe", "mesa", "escena-pemon"],
+  warao: ["delta", "escena-warao", "relato-pesca", "relato-vestido", "relato-canal"],
+  wayuu: ["guajira", "escena-wayuu", "relato-cosecha", "relato-mantas", "escena-wayuu"],
+  pemon: ["sabana", "escena-pemon", "relato-budare", "mesa", "escena-pemon"],
 };
 
 
@@ -337,26 +334,15 @@ function updateScenery(page, id) {
     scene = games[id].rounds?.[roundState.index]?.people ?? alternateScenes[id] ?? "warao";
     if (id === "ordenar") scene = roundState.sequencePeople;
   }
-  const allowMotion = !reducedMotion.matches && !navigator.connection?.saveData;
   const index = route().scene;
   const lessonScene = page === "leccion" && peoples[id]?.scenes[index];
   const art = lessonScene ? lessonScene[4] || lessonArt[id][index] : `escena-${scene}`;
   document.body.classList.toggle("reading-lesson", Boolean(lessonScene));
-  const key = `${art}:${allowMotion}:${Boolean(lessonScene)}`;
-  motionToggle.hidden = !allowMotion || Boolean(lessonScene);
-  motionToggle.textContent = motionPaused ? "▶ Activar animación" : "Ⅱ Pausar animación";
-  scenery.style.setProperty("--cover-play", motionPaused ? "paused" : "running");
-  if (key === sceneKey) return;
-  sceneKey = key;
-  scenery.className = `scenery scenery-${scene}${allowMotion ? " animated" : ""}`;
-  scenery.innerHTML = `<img src="./art/${art}.webp" alt="">${!lessonScene && allowMotion && scene !== "ethan" ?
-    `<video muted ${motionPaused ? "" : "autoplay"} loop playsinline preload="none" poster="./art/escena-${scene}.webp" src="./art/escena-${scene}.mp4"></video>` : ""}`;
-  const video = scenery.querySelector("video");
-  if (video) {
-    video.addEventListener("playing", () => video.classList.add("ready"), { once: true });
-    video.muted = true;
-    if (!motionPaused) video.play().catch(() => {});
-  }
+  if (art === sceneKey) return;
+  sceneKey = art;
+  scenery.className = `scenery scenery-${scene}`;
+  scenery.innerHTML = `<img src="./art/${art}.webp" alt="">`;
+
 }
 
 function render() {
@@ -551,15 +537,5 @@ document.querySelector(".skip").addEventListener("click", (event) => {
   event.preventDefault();
   main.focus();
 });
-motionToggle.addEventListener("click", () => {
-  motionPaused = !motionPaused;
-  const video = scenery.querySelector("video");
-  if (motionPaused) video?.pause();
-  else video?.play().catch(() => {});
-  const { page, id } = route();
-  updateScenery(page, id);
-});
-
 window.addEventListener("hashchange", navigate);
-reducedMotion.addEventListener("change", render);
 render();

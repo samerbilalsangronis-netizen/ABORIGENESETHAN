@@ -273,3 +273,14 @@ main.wrap,.bottom.wrap{grid-column:2}
  .lesson-overlay .steps{gap:3px}
  .lesson-overlay .steps a{width:clamp(34px,10vw,44px)}
 }
+
+.reading-lesson .scenery{background:#17352d}
+.reading-lesson .scenery>img{left:auto;right:0;width:82%;height:100%;object-fit:contain;object-position:right center}
+.reading-lesson .scenery::after{background:linear-gradient(90deg,#17352d 8%,#17352df5 27%,#17352da8 43%,transparent 69%),linear-gradient(0deg,#17352d80,transparent 30%)}
+.lesson-overlay{width:min(44vw,540px)}
+@media(max-width:740px){
+ .reading-lesson .scenery>img{width:100%;height:55svh;object-position:center top}
+ .reading-lesson .scenery::after{background:linear-gradient(180deg,transparent 25svh,#17352d 53svh)}
+ .lesson-stage{padding-top:39svh}
+ .lesson-overlay{width:100%}
+}
