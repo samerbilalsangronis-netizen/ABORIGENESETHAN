@@ -158,7 +158,7 @@ function tour(id = stops[0].id) {
 
 function lesson(id, sceneIndex, fromTour = false) {
   const people = peoples[id];
-  const [topic, title, description, icon] = people.scenes[sceneIndex];
+  const [topic, title, description, icon, illustration, imageDescription] = people.scenes[sceneIndex];
   const last = sceneIndex === people.scenes.length - 1;
   const detail = sceneDetails[title];
   const lessonPath = (page) => `#leccion/${id}/${page}${fromTour ? "/viaje" : ""}`;
@@ -168,9 +168,10 @@ function lesson(id, sceneIndex, fromTour = false) {
       <p class="eyebrow">Pueblo ${people.name} · ${people.area}</p>
       <nav class="steps" aria-label="Páginas de la lección">${people.scenes.map(([label], index) =>
         `<a href="${lessonPath(index + 1)}" aria-label="Página ${index + 1}, ${label}" ${index === sceneIndex ? 'aria-current="step"' : ""}>${index + 1}</a>`).join("")}</nav>
+      ${illustration ? `<img class="story-image" src="./art/${illustration}.webp" alt="${imageDescription}">` : ""}
       <div class="lesson-copy ${detail ? "with-detail" : ""}">
         <div><span class="kicker">${topic}</span><h1 id="scene-title" tabindex="-1">${title}</h1><p>${description}</p></div>
-        ${detail ? `<img class="scene-detail" src="./art/${detail}.webp" alt="">` : emoji(icon, "lesson-icon")}
+        ${detail ? `<img class="scene-detail" src="./art/${detail}.webp" alt="">` : illustration ? "" : emoji(icon, "lesson-icon")}
       </div>
       <div class="actions lesson-controls">
         ${listenButton("Escuchar la lección", title + ". " + description)}

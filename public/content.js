@@ -10,6 +10,8 @@ export const peoples = {
       ["¿Qué comían?", "Peces del delta", "La pesca ha sido importante en comunidades Warao del delta. El pescado es uno de los alimentos que las familias han obtenido del río.", "🐟"],
       ["¿Cómo se vestían?", "El guayuco", "En el pasado, algunos hombres Warao usaban un guayuco. Era una prenda corta que se sujetaba a la cintura.", "🧵"],
       ["¿Y hoy?", "El río y la canoa", "En comunidades del delta, la canoa sirve para moverse entre los canales. También hay familias Warao que viven en otros lugares.", "🛶"],
+      ["La palma del delta", "Un hilo que viene de una hoja", "En el delta crece una palma llamada moriche. Algunas familias warao sacan fibras de sus hojas. Mira las tiras claras que sostiene la niña. ¿A qué se parecen?", "🌴", "moriche", "Dos personas observan fibras largas junto a una palma de moriche."],
+      ["El tejido", "Una cesta toma forma", "Sigue una tira con el dedo sobre la pantalla. Pasa por encima de otra y luego por debajo. Así, al cruzar muchas fibras, las manos de quien teje van formando una cesta. ¿Encuentras una que ya está terminada?", "🧺", "cesteria", "Unas manos tejen junto a una cesta terminada con un dibujo oscuro."],
     ],
     sequence: [["🛶","Salir en canoa"],["🐟","Pescar en el río"],["🏠","Llevar el pescado a casa"]],
     food: ["🐟","Pescado"],
@@ -26,6 +28,8 @@ export const peoples = {
       ["¿Qué comían?", "Maíz y frijoles", "En partes de La Guajira se cultivan alimentos como el maíz y los frijoles. Lo que se siembra depende del lugar y de las lluvias.", "🌽"],
       ["¿Cómo se vestían?", "La manta wayúu", "La manta wayúu es una prenda larga que usan algunas mujeres Wayúu. Puede tener colores y diseños distintos.", "👗"],
       ["¿Y hoy?", "Manos que tejen", "En Paraguaipoa hay tejedoras Wayúu que trabajan con hilos de colores y enseñan sus saberes a otras personas.", "🧶"],
+      ["La palabra", "El oficio de escuchar", "Cuando dos familias wayúu tienen un desacuerdo, pueden pedir ayuda a un palabrero. Él lleva la palabra de una familia a la otra. Mira las caras de quienes escuchan. ¿Qué haces tú para escuchar con atención?", "💬", "palabrero", "Un palabrero conversa con una familia bajo una enramada."],
+      ["El acuerdo", "Volver a saludarse", "El palabrero ayuda a las familias a buscar un acuerdo. Si alguien causó un daño, conversan sobre cómo repararlo. Imagina que rompiste sin querer el dibujo de un amigo. ¿Qué podrías ofrecerle para ayudar?", "🤝", "acuerdo", "Dos personas se saludan mientras sus familias las acompañan."],
     ],
     sequence: [["🧶","Escoger los hilos"],["🪡","Tejer"],["👜","Ver la pieza terminada"]],
     food: ["🌽","Maíz"],
@@ -42,6 +46,8 @@ export const peoples = {
       ["¿Qué comían?", "Yuca y casabe", "El casabe es una torta delgada que se hace con yuca. Preparar alimentos de yuca es una tradición que se sigue practicando en comunidades Pemón.", "🫓"],
       ["¿Cómo se vestían?", "Una mirada al presente", "Las personas Pemón viven en distintas comunidades y su ropa puede variar según el lugar, la actividad y la ocasión.", "👕"],
       ["¿Y hoy?", "Compartir lo aprendido", "En comunidades como Kumarakapay, mujeres Pemón preparan casabe para sus familias y también para venderlo.", "🤝"],
+      ["El conuco", "Un tesoro bajo la tierra", "Un conuco es un terreno donde se cultivan alimentos. En esta escena, una familia pemón observa una planta de yuca. Arriba están las hojas. Abajo crecen las raíces que se usan para hacer casabe. ¿Puedes señalar ambas partes?", "🌱", "conuco", "Una persona adulta y un niño observan una planta de yuca y sus raíces."],
+      ["La mesa", "De una raíz a una torta", "En Kumarakapay, algunas familias pemón preparan casabe para compartir y vender. Mira el pedacito que sostiene el niño. Antes fue parte de una raíz. Si contaras su viaje, ¿qué dibujarías primero: la planta o el casabe?", "🫓", "mesa", "Una familia comparte trozos de casabe frente a un tepuy."],
     ],
     sequence: [["🌱","Conseguir la yuca"],["🫓","Preparar el casabe con ayuda adulta"],["🍽️","Compartir el casabe"]],
     food: ["🫓","Casabe"],
@@ -100,7 +106,7 @@ export const games = {
       question("¿En qué se puede navegar entre los canales del delta?", options(["🚲","Bicicleta"],["🛶","Canoa"],["🛹","Patineta"]), 1, "Flota y se puede mover con un remo.", "¡En una canoa!", "warao", 4),
       question("¿Con qué trabajan las tejedoras que conociste en Paraguaipoa?", options(["🪨","Piedras"],["🍂","Hojas"],["🧶","Hilos"]), 2, "Pueden ser de muchos colores.", "¡Con hilos de colores!", "wayuu", 4),
       question("¿Con qué se prepara el casabe?", options(["🌽","Maíz"],["🌱","Yuca"],["🍌","Plátano"]), 1, "Es una raíz que aparece en la lección Pemón.", "¡Con yuca!", "pemon", 2),
-      question("¿Cuándo viven las comunidades indígenas que conociste?", options(["📜","Solo en el pasado"],["🗓️","También en el presente"],["🌙","Solo en los cuentos"]), 1, "La última página de cada lección habla de nuestras comunidades hoy.", "¡También en el presente! Sus comunidades siguen formando parte de Venezuela.", "pemon", 4),
+      question("¿Cuándo viven las comunidades indígenas que conociste?", options(["📜","Solo en el pasado"],["🗓️","También en el presente"],["🌙","Solo en los cuentos"]), 1, "Recuerda lo que aprendiste sobre las familias que viven hoy en estas comunidades.", "¡También en el presente! Sus comunidades siguen formando parte de Venezuela.", "pemon", 4),
     ],
   },
 };
@@ -112,6 +118,8 @@ export const pairs = [
 ];
 
 export const sources = [
+  ["UNESCO · El palabrero wayúu","https://ich.unesco.org/es/RL/00435"],
+  ["Fundación Empresas Polar · Vivienda y artesanía del delta","https://bibliofep.fundacionempresaspolar.org/media/16968/geo_u7_l181_delta_vivienda_artesania.pdf"],
   ["UNESCO · Reserva de Biosfera Delta del Orinoco","https://www.unesco.org/en/mab/delta-del-orinoco"],
   ["UNICEF y FUNPROEIB Andes · Atlas sociolingüístico, tomo 1","https://www.unicef.org/lac/sites/unicef.org.lac/files/2020-02/20100318_UNICEF_AtlasSociolinguistico_tomo1.pdf"],
   ["Universidade Estadual de Roraima · Warao Janoko Emo","https://edicoes.uerr.edu.br/index.php/inicio/en/catalog/download/125/114/1105?inline=1"],
