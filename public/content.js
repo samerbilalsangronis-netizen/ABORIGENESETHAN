@@ -55,12 +55,13 @@ export const peoples = {
   },
   humogrias: {
     name: "Humogrías", area: "La Grita", color: "hill",
-    intro: "Viaja al Táchira con Ethan y descubre qué puede contarnos una piedra.",
+    intro: "En el valle donde hoy está La Grita vivían los humogrías. Su historia comenzó mucho antes de que se levantaran las calles de la ciudad.",
     scenes: [
-      ["¿Dónde estamos?", "La Grita entre montañas", "Hoy llegamos a La Grita, en el estado Táchira. Mucho antes de que existiera la ciudad, en este valle vivían los humogrías. Busca las casas de hoy entre las montañas.", "⛰️", "escena-humogrias", "Un pueblo entre laderas verdes de los Andes."],
-      ["El paisaje", "El valle de los humogrías", "Sigue con el dedo una ladera desde la cima hasta el fondo. La tierra baja que ves entre las montañas forma un valle. Los relatos de La Grita recuerdan este lugar con el nombre de Humogría.", "🌄", "valle-humogrias", "Un curso de agua recorre el fondo de un valle."],
-      ["Una herramienta", "La piedra de moler", "Una crónica de La Grita cuenta que los humogrías trabajaban la piedra. Entre sus herramientas había piedras de moler. Mira el dibujo: una piedra pequeña se mueve sobre otra para triturar lo que queda entre ellas.", "🪨", "piedra-humogrias", "Una piedra pequeña y lisa descansa sobre una piedra más ancha."],
-      ["Investiga con Ethan", "Dibuja una pista", "Imagina que visitas un museo. Mira las dos piedras y dibuja sus formas en el aire. ¿Cuál cabe en una mano? ¿Cuál sirve de base? Así puedes explicar con tus palabras cómo se usaba la herramienta.", "✏️", "cuaderno-humogrias", "Una niña de hoy dibuja la herramienta en su cuaderno."],
+      ["El territorio", "Antes de La Grita", "En los Andes de Venezuela, las montañas del Táchira rodean un valle. Allí vivían los humogrías antes de la llegada de los españoles. Humogría es uno de los nombres que se recuerdan para ese valle.", "⛰️", "valle-humogrias", "Montañas verdes a ambos lados de un valle andino."],
+      ["La vida en el valle", "El trabajo de la piedra", "Los humogrías daban forma a la piedra para hacer herramientas. Según una crónica de La Grita, hacían hachas y cuñas. Una cuña es una pieza estrecha en un extremo. Servía para abrir la madera y separarla en trozos de leña.", "🪨", "valle-humogrias", "Paisaje ilustrado del valle andino donde vivían los humogrías."],
+      ["Una herramienta cotidiana", "La piedra de moler", "Otra herramienta era la piedra de moler. La piedra grande servía de base. Al mover una piedra más pequeña por encima, se trituraba lo que había entre las dos. El peso de la piedra ayudaba a hacer el trabajo.", "🪨", "piedra-humogrias", "Representación de una piedra pequeña sobre una base de piedra más ancha."],
+      ["La llegada de los españoles", "Una ciudad en un valle habitado", "En 1576, el capitán español Francisco de Cáceres fundó en este valle la ciudad del Espíritu Santo de La Grita. El pueblo humogría ya tenía una historia allí. Dos años después, las autoridades españolas repartieron terrenos y trazaron calles para la ciudad.", "🏘️", "escena-humogrias", "Vista ilustrada de La Grita actual entre las montañas."],
+      ["La memoria del pueblo", "La historia que conservó Fanny", "Muchos años después, Fanny Zulay Rojas Moreno, investigadora de La Grita, estudió documentos antiguos y escribió sobre los humogrías. Gracias a ese trabajo, hoy los niños pueden conocer a las personas que habitaron el valle antes de que existiera su ciudad.", "📖", "cuaderno-humogrias", "Una niña de hoy aprende sobre las herramientas del pasado."],
     ],
     sequence: [["👀","Observar las piedras"],["✏️","Dibujar sus formas"],["💬","Explicar su uso"]],
   },
@@ -131,6 +132,9 @@ export const pairs = [
 ];
 
 export const sources = [
+  ["Fundación Cultural Bordes · Fanny Zulay Rojas Moreno y sus investigaciones","https://www.bordes.com.ve/2017/07/29/recuerdos-de-una-maestra-de-las-cosas-sencillas-fanny-zulay-rojas/"],
+  ["Boletín de la Academia Nacional de la Historia · Fundación de La Grita","https://biblat.unam.mx/hevila/BoletindelaAcademiaNacionaldelaHistoriaCaracas/1984/vol67/no267/16.pdf"],
+  ["Táchira Histórica · Documentos sobre el reparto de tierras de 1578","https://www.academia.edu/170687724/"],
   ["Pedro Pablo Paredes · Pueblos del Táchira, capítulo La Grita","https://pedropabloparedes.com/wp-content/uploads/2017/05/pueblos%20del%20tachira%20de%20pedro%20pablo%20paredes%20edicion%20de%201982.pdf"],
   ["Macario Sandoval · La Grita, Ciudad Primogénita (crónica local)","https://www.aporrea.org/regionales/a331540.html"],
   ["UNESCO · El palabrero wayúu","https://ich.unesco.org/es/RL/00435"],
