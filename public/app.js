@@ -94,21 +94,22 @@ const lessonArt = {
 };
 
 
-const pins = { wayuu: [19.1, 19.1], warao: [78.5, 35.6], pemon: [79.1, 61.9] };
+const pins = { humogrias: [22, 47], wayuu: [19.1, 19.1], warao: [78.5, 35.6], pemon: [79.1, 61.9] };
 
 const stops = [
   { id: "wayuu", title: "Entre cactus y tejidos" },
+  { id: "humogrias", title: "El valle de los humogrías" },
   { id: "warao", title: "Por los canales del Orinoco" },
   { id: "pemon", title: "Entre tepuyes" },
 ];
 const tourPath = (id) => `#viaje/${id}`;
 
 function routeMap(current, compact = false) {
-  const landscapes = { wayuu: "guajira", warao: "delta", pemon: "sabana" };
+  const landscapes = { humogrias: "escena-humogrias", wayuu: "guajira", warao: "delta", pemon: "sabana" };
   return `<div class="map tour-map${compact ? " compact-map" : ""}">
     <img src="./art/mapa.svg" alt="Mapa de Venezuela">
     <svg class="route-line" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M19.1 19.1 C36 4 57 20 78.5 35.6 Q90 49 79.1 61.9" vector-effect="non-scaling-stroke"/>
+      <path d="M19.1 19.1 Q13 36 22 47 C36 55 57 20 78.5 35.6 Q90 49 79.1 61.9" vector-effect="non-scaling-stroke"/>
     </svg>
     ${stops.map(({ id }, index) => {
       const [x, y] = pins[id];
@@ -132,7 +133,7 @@ function tour(id = stops[0].id) {
     return `<section class="scene-stage"><article class="white-card focus-card tour-card">
       ${back("Mapa", "#explorar")}
       <h1>¡Completaste el viaje!</h1>
-      <p>Visitaste La Guajira, el delta del Orinoco y la Gran Sabana.</p>
+      <p>Visitaste La Guajira, La Grita, el delta del Orinoco y la Gran Sabana.</p>
       ${routeMap(null, true)}
       <div class="actions">${link("Jugar →", "#jugar", "gold")}${link("Volver al mapa", "#explorar")}</div>
     </article></section>`;
@@ -300,7 +301,7 @@ function guide() {
       <p>Para conversar: ¿qué detalle de la historia te ayudó a elegir?</p>
       <div class="actions section">${link("Abrir lecciones", "#explorar")}${link("Abrir juegos", "#jugar")}</div>
     </section>
-    <section><h2>Fuentes</h2><p>Las imágenes son ilustraciones educativas. El mapa indica lugares aproximados de las historias.</p>
+    <section><h2>Fuentes</h2><p>Las imágenes son ilustraciones educativas. La piedra de moler de la lección humogría es una representación de su uso. La referencia histórica procede de la crónica local de Macario Sandoval. El mapa indica lugares aproximados de las historias.</p>
       <ul>${sources.map(([title, url]) => `<li><a href="${url}" target="_blank" rel="noopener noreferrer">${title}</a></li>`).join("")}
       <li><a href="https://github.com/johan/world.geo.json" target="_blank" rel="noopener noreferrer">World GeoJSON · Contorno del mapa</a></li></ul>
     </section>
@@ -318,6 +319,7 @@ function route() {
 }
 
 const sceneLabels = {
+  humogrias: "Ilustración de La Grita entre las montañas andinas.",
   warao: "Familia Warao en una canoa junto a una casa sobre postes, en el delta del Orinoco.",
   wayuu: "Una tejedora Wayúu le muestra su trabajo a una niña a la sombra de una enramada.",
   pemon: "Una familia Pemón comparte casabe al pie de los tepuyes de la Gran Sabana.",

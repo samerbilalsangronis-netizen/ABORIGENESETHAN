@@ -53,6 +53,17 @@ export const peoples = {
     food: ["🫓","Casabe"],
     place: ["🛖","Churuata comunitaria"],
   },
+  humogrias: {
+    name: "Humogrías", area: "La Grita", color: "hill",
+    intro: "Viaja al Táchira con Ethan y descubre qué puede contarnos una piedra.",
+    scenes: [
+      ["¿Dónde estamos?", "La Grita entre montañas", "Hoy llegamos a La Grita, en el estado Táchira. Mucho antes de que existiera la ciudad, en este valle vivían los humogrías. Busca las casas de hoy entre las montañas.", "⛰️", "escena-humogrias", "Un pueblo entre laderas verdes de los Andes."],
+      ["El paisaje", "El valle de los humogrías", "Sigue con el dedo una ladera desde la cima hasta el fondo. La tierra baja que ves entre las montañas forma un valle. Los relatos de La Grita recuerdan este lugar con el nombre de Humogría.", "🌄", "valle-humogrias", "Un curso de agua recorre el fondo de un valle."],
+      ["Una herramienta", "La piedra de moler", "Una crónica de La Grita cuenta que los humogrías trabajaban la piedra. Entre sus herramientas había piedras de moler. Mira el dibujo: una piedra pequeña se mueve sobre otra para triturar lo que queda entre ellas.", "🪨", "piedra-humogrias", "Una piedra pequeña y lisa descansa sobre una piedra más ancha."],
+      ["Investiga con Ethan", "Dibuja una pista", "Imagina que visitas un museo. Mira las dos piedras y dibuja sus formas en el aire. ¿Cuál cabe en una mano? ¿Cuál sirve de base? Así puedes explicar con tus palabras cómo se usaba la herramienta.", "✏️", "cuaderno-humogrias", "Una niña de hoy dibuja la herramienta en su cuaderno."],
+    ],
+    sequence: [["👀","Observar las piedras"],["✏️","Dibujar sus formas"],["💬","Explicar su uso"]],
+  },
 };
 
 const options = (...choices) => choices.map(([icon, label]) => ({ icon, label }));
@@ -67,6 +78,7 @@ export const games = {
   identificar: {
     name: "¿Qué ves?", icon: "🔎", color: "sand", description: "Mira la imagen y toca su nombre.",
     rounds: [
+      identify("piedra-humogrias", "Dos piedras lisas, una pequeña sobre una base ancha.", ["Cesta", "Piedra de moler", "Canoa"], 1, "Sirve para triturar.", "¡Una piedra de moler!", "humogrias", 2),
       identify("canoa", "Embarcación larga y estrecha de madera.", ["Canoa", "Cesta", "Remo"], 0, "En ella puedes viajar por el río.", "¡Una canoa! Sirve para navegar.", "warao", 4),
       identify("maiz", "Mazorca cubierta de pequeños granos amarillos.", ["Yuca", "Maíz", "Casabe"], 1, "Sus granos crecen en una mazorca.", "¡Es maíz! Reconociste sus granos.", "wayuu", 2),
       identify("manta", "Prenda larga, ancha y de colores.", ["Sombrero", "Guantes", "Manta wayúu"], 2, "Es una prenda que cubre el cuerpo.", "¡Es una manta wayúu!", "wayuu", 3),
@@ -102,6 +114,7 @@ export const games = {
   reto: {
     name: "Reto del explorador", icon: "🏅", color: "sand", description: "Pon a prueba lo que descubriste.",
     rounds: [
+      question("¿En qué estado está el valle de los humogrías?", options(["⛰️","Táchira"],["🌵","Zulia"],["🌄","Bolívar"]), 0, "Recuerda la parada de La Grita.", "¡Táchira! Allí está La Grita.", "humogrias", 0),
       question("¿Qué lugar tiene muchos brazos de río?", options(["🌊","El delta"],["⛰️","La Gran Sabana"],["🌵","La Guajira"]), 0, "Lo viste en la lección Warao.", "¡El delta del Orinoco!", "warao", 0),
       question("¿En qué se puede navegar entre los canales del delta?", options(["🚲","Bicicleta"],["🛶","Canoa"],["🛹","Patineta"]), 1, "Flota y se puede mover con un remo.", "¡En una canoa!", "warao", 4),
       question("¿Con qué trabajan las tejedoras que conociste en Paraguaipoa?", options(["🪨","Piedras"],["🍂","Hojas"],["🧶","Hilos"]), 2, "Pueden ser de muchos colores.", "¡Con hilos de colores!", "wayuu", 4),
@@ -118,6 +131,8 @@ export const pairs = [
 ];
 
 export const sources = [
+  ["Pedro Pablo Paredes · Pueblos del Táchira, capítulo La Grita","https://pedropabloparedes.com/wp-content/uploads/2017/05/pueblos%20del%20tachira%20de%20pedro%20pablo%20paredes%20edicion%20de%201982.pdf"],
+  ["Macario Sandoval · La Grita, Ciudad Primogénita (crónica local)","https://www.aporrea.org/regionales/a331540.html"],
   ["UNESCO · El palabrero wayúu","https://ich.unesco.org/es/RL/00435"],
   ["Fundación Empresas Polar · Vivienda y artesanía del delta","https://bibliofep.fundacionempresaspolar.org/media/16968/geo_u7_l181_delta_vivienda_artesania.pdf"],
   ["UNESCO · Reserva de Biosfera Delta del Orinoco","https://www.unesco.org/en/mab/delta-del-orinoco"],
